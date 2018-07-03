@@ -11,10 +11,20 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "MyDatabase.db";
     public static final int DATABASE_VERSION = 1;
-    public static final String SQL_DROP = "DROP TABLE IF EXISTS mytable;";
-    public static final String SQL_CREATE = "CREATE TABLE mytable (_id INTEGER PRIMARY KEY, ProgramName TEXT, Link TEXT);";
-            /// Drop table if it exists, then create table.
 
+
+    public static final String SQL_DROP_COURSES_TABLE = "DROP TABLE IF EXISTS courses;";
+    public static final String SQL_CREATE_COURSES_TABLE = "CREATE TABLE courses ( " +
+            "tblID INTEGER PRIMARY KEY, " +
+            "_id INTEGER," +
+            "program INTEGER,  " +
+            "semesterNum INTEGER, " +
+            "courseCode TEXT, " +
+            "courseTitle TEXT,  " +
+            "courseDescription TEXT,  " +
+            "courseOwner TEXT,  " +
+            "optional INTEGER, " +
+            "hours INTEGER  );";
 
     public MySQLiteOpenHelper(Context context)
     {
@@ -23,9 +33,11 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db )
-    {   System.out.println("CREATE TABLE");
-        db.execSQL(SQL_DROP);
-        db.execSQL(SQL_CREATE);
+    {
+
+        System.out.println("CREATE COURSES TABLE");
+        db.execSQL(SQL_DROP_COURSES_TABLE);
+        db.execSQL(SQL_CREATE_COURSES_TABLE);
     }
 
     @Override
